@@ -30,11 +30,23 @@ if (y <= 0) {
   hasJumped = false;   // player is on the ground again
 }
 ```
+```The math behind it:
+At 60fps, GRAVITY = 0.6 means the player accelerates downward by 0.6px per frame, every frame. A full jump arc looks like this:
 
+Frame 0: velY = -12 → player shoots up 12px
+Each frame: velY += 0.6 → upward speed bleeds off
+Frame 20: velY ≈ 0 → peak of the jump
+Frame 40: velY = +12 → back on the ground
+
+So the jump takes roughly 40 frames = 0.67 seconds at 60fps. That's a natural, snappy jump.
+What happens if you change them:
+GRAVITYJUMP_FORCEFeel0.6-12Default — snappy, arcade-like0.3-12Floaty — player hangs in the air1.2-12Heavy — fast fall, low arc0.6-18High jump, same fall speed0.6-6Short hop
+The rule of thumb: the ratio JUMP_FORCE / GRAVITY controls jump height. -12 / 0.6 = 20, so the player rises for 20 frames before gravity wins. Double the ratio → double the height.
+The values aren't special — you tune them until the jump feels right for your game. Platformers like Mario use a trick where gravity is stronger when the button is released mid-jump (variable jump height), but for a basic loop 0.6 and -12 are a solid starting point.
 ### Why subtract instead of add?
 
 `y` is measured from the ground upward. When the player jumps, `velY` starts at `-12`. Subtracting a negative number increases `y`, so the player rises. As gravity adds `+0.6` each frame, `velY` climbs toward zero (peak) then goes positive (falling). Subtracting a positive `velY` decreases `y` — the player falls back down.
-
+```
 ---
 
 ## 2. The hasJumped Lock

@@ -30,7 +30,7 @@ if (y <= 0) {
   hasJumped = false;   // player is on the ground again
 }
 
-``` The math behind it:
+## The math behind it:
 At 60fps, GRAVITY = 0.6 means the player accelerates downward by 0.6px per frame, every frame. A full jump arc looks like this:
 
 Frame 0: velY = -12 → player shoots up 12px

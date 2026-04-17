@@ -52,7 +52,7 @@ Platformers like Mario use a trick where gravity is stronger when the button is 
 
 `y` is measured from the ground upward. When the player jumps, `velY` starts at `-12`. Subtracting a negative number increases `y`, so the player rises. As gravity adds `+0.6` each frame, `velY` climbs toward zero (peak) then goes positive (falling). Subtracting a positive `velY` decreases `y` — the player falls back down.
 ```
----
+
 
 ## 2. The hasJumped Lock
 

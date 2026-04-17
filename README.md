@@ -39,9 +39,12 @@ Frame 20: velY ≈ 0 → peak of the jump
 Frame 40: velY = +12 → back on the ground
 
 So the jump takes roughly 40 frames = 0.67 seconds at 60fps. That's a natural, snappy jump.
+
 What happens if you change them:
+
 GRAVITYJUMP_FORCEFeel0.6-12Default — snappy, arcade-like0.3-12Floaty — player hangs in the air1.2-12Heavy — fast fall, low arc0.6-18High jump, same fall speed0.6-6Short hop
 The rule of thumb: the ratio JUMP_FORCE / GRAVITY controls jump height. -12 / 0.6 = 20, so the player rises for 20 frames before gravity wins. Double the ratio → double the height.
+
 The values aren't special — you tune them until the jump feels right for your game. 
 
 Platformers like Mario use a trick where gravity is stronger when the button is released mid-jump (variable jump height), but for a basic loop 0.6 and -12 are a solid starting point.
